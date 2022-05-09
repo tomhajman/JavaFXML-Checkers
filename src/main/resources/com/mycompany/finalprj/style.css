@@ -1,0 +1,30 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 28 kwi 2022, 21:26:06
+    Author     : kryst
+*/
+
+.game-grid {
+    -fx-background-color: white ;
+    -fx-padding: 10 ;
+}
+.game-grid-cell {
+    -fx-background-color: black, white ;
+    -fx-background-insets: 0, 0 1 1 0 ;
+}
+.first-row {
+    -fx-background-color: black, white ;
+    -fx-background-insets: 0, 1 1 1 0 ;
+}
+.first-column {
+    -fx-background-color: black, white ;
+    -fx-background-insets: 0, 0 1 1 1 ;
+}
+.first-row-first-column {
+    -fx-background-color: black, white ;
+    -fx-background-insets: 0, 1 1 1 1 ;
+}
+
