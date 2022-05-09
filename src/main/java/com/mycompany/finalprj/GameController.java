@@ -130,6 +130,7 @@ public class GameController implements Initializable {
         
         try{
             File file = fileChooser.showOpenDialog(stage);
+            if(file != null){
             fileChooser.setInitialDirectory(file.getParentFile());
             
             Scanner sc = new Scanner(file);
@@ -149,6 +150,7 @@ public class GameController implements Initializable {
             //}
             sc.close();
             fillBoard();
+            }
 
         } catch (Exception ex){
             ex.printStackTrace();
@@ -164,6 +166,7 @@ public class GameController implements Initializable {
         
         try{
             File file = fileChooser.showSaveDialog(stage);
+            if(file != null){
             fileChooser.setInitialDirectory(file.getParentFile());
             
             FileWriter writer = new FileWriter(file);
@@ -177,6 +180,7 @@ public class GameController implements Initializable {
                 //writer.write("\n");
             }
             writer.close();
+            }
             
         } catch (Exception ex) {
             ex.printStackTrace();
