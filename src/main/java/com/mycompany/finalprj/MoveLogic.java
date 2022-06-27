@@ -128,9 +128,9 @@ public class MoveLogic {
     private static void checkTopLeftMoves(int type, int col, int row) {
         // row-- col--
         int pieceColor = (type == 4 ? 1 : 2);
-        //System.out.println("Enemy Piece color = " + pieceColor);
+
         try{
-        while(col >0 && row >0){
+        while(col > 0 && row > 0){
             row--;
             col--;
             if(piecesBackend[row][col] == 0) {
@@ -153,9 +153,9 @@ public class MoveLogic {
     private static void checkTopRightMoves(int type, int col, int row) {
         // row-- col++
         int pieceColor = (type == 4 ? 1 : 2);
-        //System.out.println("Enemy Piece color = " + pieceColor);
+
         try{
-        while(col <8 && row >0){
+        while(col < GameController.BOARD_WIDTH && row > 0){
             row--;
             col++;
             if(piecesBackend[row][col] == 0) {
@@ -178,9 +178,9 @@ public class MoveLogic {
     private static void checkBottomLeftMoves(int type, int col, int row){
         // row++ col--
         int pieceColor = (type == 4 ? 1 : 2);
-        //System.out.println("Enemy Piece color = " + pieceColor);
+
         try{
-        while(col >0 && row <8){
+        while(col > 0 && row < GameController.BOARD_HEIGHT){
             row++;
             col--;
             if(piecesBackend[row][col] == 0) {
@@ -203,9 +203,9 @@ public class MoveLogic {
     private static void checkBottomRightMoves(int type, int col, int row){
         // row++ col++
         int pieceColor = (type == 4 ? 1 : 2);
-        //System.out.println("Enemy Piece color = " + pieceColor);
+
         try{
-        while(col <8 && row <8){
+        while(col < GameController.BOARD_WIDTH && row < GameController.BOARD_HEIGHT){
             row++;
             col++;
             if(piecesBackend[row][col] == 0) {

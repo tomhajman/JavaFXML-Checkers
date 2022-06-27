@@ -13,15 +13,15 @@ import javafx.scene.shape.Rectangle;
  */
 public class Highlight {
     private final int SIDE = 48;
-    private Rectangle rec;
+    private Rectangle rectangle;
     
     public Highlight () {
-        rec = new Rectangle(SIDE, SIDE);
-        rec.setFill(Color.TEAL);
-        rec.setOpacity(0.4);
+        rectangle = new Rectangle(SIDE, SIDE);
+        rectangle.setFill(Color.TEAL);
+        rectangle.setOpacity(0.4);
     }
     
     public Rectangle getHighlight() {
-        return this.rec;
+        return this.rectangle;
     }
 }

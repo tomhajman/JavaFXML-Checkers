@@ -34,9 +34,9 @@ public class Piece {
         grp.getChildren().add(piece);
         
         if(type == 4 || type == 5){
-            Text txt = new Text("K");
-            txt.setFill(type == 5 ? Color.WHITE : Color.BLACK);
-            grp.getChildren().add(txt);
+            Text text = new Text("K");
+            text.setFill(type == 5 ? Color.WHITE : Color.BLACK);
+            grp.getChildren().add(text);
             grp.getChildren().get(1).setLayoutX(-4);
             grp.getChildren().get(1).setLayoutY(3);
         }

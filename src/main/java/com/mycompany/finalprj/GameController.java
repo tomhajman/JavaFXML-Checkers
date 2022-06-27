@@ -45,6 +45,10 @@ public class GameController implements Initializable {
     public static final int BLACK = 2;
     public static final int WHITE_KING = 1 + 3;
     public static final int BLACK_KING = 2 + 3;
+    
+    // Board size
+    public static final int BOARD_HEIGHT = 8;
+    public static final int BOARD_WIDTH = 8;
 
     public static int numWhitePieces = 0;
     public static int numBlackPieces = 0;
@@ -81,32 +85,25 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODOs
         fillBoard();
     }
 
+    // Called everytime a board tile is clicked
     @FXML
     private void testMove(MouseEvent e) {
-        // col index + row index
-        //Node source = (Node)e.getSource();
         StackPane sPane = (StackPane) e.getSource();
         Integer colIndex = GridPane.getColumnIndex(sPane);
         Integer rowIndex = GridPane.getRowIndex(sPane);
-        //System.out.printf("Mouse clicked cell [%d, %d]%n", colIndex, rowIndex);
-        //System.out.println("" + sPane.getChildren());
         if (isPieceSelected) {
             makeMove(colIndex, rowIndex);
         } else {
             selectPiece(piecesBackend[rowIndex][colIndex], colIndex, rowIndex);
         }
-
     }
 
+    // Called when reset button is pressed
     @FXML
     private void buttonPressed(MouseEvent e) throws IOException {
-        //System.out.println("Pressed reset button!");
-        //System.out.println("White pcs: " + numWhitePieces);
-        //System.out.println("Black pcs: " + numBlackPieces);
         clearBoard();
         int freshBoard[][] = {{0, 2, 0, 2, 0, 2, 0, 2},
         {2, 0, 2, 0, 2, 0, 2, 0},
@@ -138,8 +135,8 @@ public class GameController implements Initializable {
                 isWhitesTurn = Boolean.parseBoolean(sc.nextLine());
                 updateTurnLabel();
                 clearBoard();
-                for (int i = 0; i < 8; i++) {
-                    for (int j = 0; j < 8; j++) {
+                for (int i = 0; i < BOARD_HEIGHT; i++) {
+                    for (int j = 0; j < BOARD_WIDTH; j++) {
                         piecesBackend[i][j] = Integer.parseInt(sc.nextLine());
                     }
                 }
@@ -172,7 +169,6 @@ public class GameController implements Initializable {
                         writer.write(Integer.toString(piecesBackend[i][j]));
                         writer.write("\n");
                     }
-                    //writer.write("\n");
                 }
                 writer.close();
             }
@@ -188,12 +184,12 @@ public class GameController implements Initializable {
                 return node;
             }
         }
+        
         return null;
     }
 
     private void makeMove(int col, int row) {
-        Move move = isValidMove(col, row);
-        //if(move != null)System.out.println("Move type " + move.getType());
+        Move move = getValidMove(col, row);
         if (move != null) {
             movePiece(col, row);
             if (move.getType() == 1) {
@@ -206,14 +202,13 @@ public class GameController implements Initializable {
             endTurn();
             validMoves.clear();
         } else {
-            //System.out.println("Illegal move");
             isPieceSelected = false;
             removeHighlights();
             validMoves.clear();
         }
     }
 
-    public Move isValidMove(int col, int row) {
+    public Move getValidMove(int col, int row) {
         Move move = null;
         Optional<Move> tempMove = validMoves.stream().filter(o -> {
             return o.getTarColumn() == col && o.getTarRow() == row;
@@ -221,6 +216,7 @@ public class GameController implements Initializable {
         if (tempMove.isPresent()) {
             move = tempMove.get();
         }
+        
         return move;
     }
 
@@ -283,15 +279,9 @@ public class GameController implements Initializable {
     }
 
     private void endTurn() {
-        if (isWhitesTurn) {
-            isWhitesTurn = false;
-            updateTurnLabel();
-            checkVictory();
-        } else {
-            isWhitesTurn = true;
-            updateTurnLabel();
-            checkVictory();
-        }
+        updateTurnLabel();
+        checkVictory();
+        isWhitesTurn = !isWhitesTurn;
     }
 
     private void updateTurnLabel() {
@@ -342,8 +332,8 @@ public class GameController implements Initializable {
     }
 
     private void fillBoard() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < BOARD_HEIGHT; i++) {
+            for (int j = 0; j < BOARD_WIDTH; j++) {
                 if (piecesBackend[i][j] != 0) {
                     addPiece(piecesBackend[i][j], j, i);
                 }
@@ -352,8 +342,8 @@ public class GameController implements Initializable {
     }
 
     private void clearBoard() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < BOARD_HEIGHT; i++) {
+            for (int j = 0; j < BOARD_WIDTH; j++) {
                 if (piecesBackend[i][j] != 0) {
                     removePiece(j, i);
                 }
