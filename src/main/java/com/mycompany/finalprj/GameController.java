@@ -137,18 +137,12 @@ public class GameController implements Initializable {
                 Scanner sc = new Scanner(file);
                 isWhitesTurn = Boolean.parseBoolean(sc.nextLine());
                 updateTurnLabel();
-                //System.out.println(sc.nextLine());
-                //System.out.println();
-                //sc.nextLine();
-                //while(sc.hasNextLine()){
                 clearBoard();
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
                         piecesBackend[i][j] = Integer.parseInt(sc.nextLine());
-                        //System.out.print("" + sc.nextLine());
                     }
                 }
-                //}
                 sc.close();
                 fillBoard();
             }

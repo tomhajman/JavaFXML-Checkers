@@ -16,7 +16,7 @@ import javafx.scene.text.TextAlignment;
  * @author kryst
  */
 public class Piece {
-    private Circle pc;
+    private Circle piece;
     private Group grp;
     
     public Group getPiece(){
@@ -24,14 +24,14 @@ public class Piece {
     }
     
     public Piece(int type) {
-        pc = new Circle(20);
-        pc.setStroke(Color.BLACK);
-        pc.setStrokeWidth(1);
+        piece = new Circle(20);
+        piece.setStroke(Color.BLACK);
+        piece.setStrokeWidth(1);
         
-        pc.setFill(type == 2 || type == 5 ? Color.BLACK : Color.WHITE);
+        piece.setFill(type == 2 || type == 5 ? Color.BLACK : Color.WHITE);
         
         grp = new Group();
-        grp.getChildren().add(pc);
+        grp.getChildren().add(piece);
         
         if(type == 4 || type == 5){
             Text txt = new Text("K");
