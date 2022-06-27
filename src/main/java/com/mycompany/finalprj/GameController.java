@@ -314,7 +314,7 @@ public class GameController implements Initializable {
         } else if (numWhitePieces == 0) {
             createDialog("Player 2 won!");
         } else {
-            if (numOfMovesWithoutKill == 20) {
+            if (numOfMovesWithoutKill >= 20) {
                 createDialog("Game ended in a tie");
             } else {
                 numOfMovesWithoutKill++;
